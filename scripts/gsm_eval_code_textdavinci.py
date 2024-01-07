@@ -76,6 +76,12 @@ with open(OUTPUT_PATH, 'a' if args.append else 'w') as f:
 			score = 0
 		scores.append(score)
 
+		for i in range(len(itf.results)):
+			try:
+				if isinstance(itf.results[i], datetime.datetime):
+					itf.results[i] = itf.results[i].strftime('%m/%d/%Y')
+			except:
+				itf.results[i] = ''
 		result['answer'] = ans
 		result['score'] = score
 		result['generation'] = itf.history
